@@ -1,0 +1,1 @@
+Exercícios realizados apartir das sugestões do livro "Curso Intensivo de Python", escrito por Eric Matthes e trago ao Brasil pela Novatec Editora.

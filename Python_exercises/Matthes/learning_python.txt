@@ -1,0 +1,8 @@
+In Python we learned object oriented programming.
+In Python we learned how to create classes.
+In Python we learned about PEP8 code styling.
+In Python we learned the concept of methods.
+In Python we learned the elif clause.
+In Python we learned about arbitrary arguments.
+In Python we learned about deaful values for parametrers.
+--
