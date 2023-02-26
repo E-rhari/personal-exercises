@@ -7,7 +7,7 @@ Created on Sun Feb 26 15:25:26 2023
 
 book = ''
 try:
-    cthulhu = open("call_of_cthulhu_gutenberg.txt")
+    cthulhu = open(r"call_of_cthulhu_gutenberg.txt")
     book = cthulhu.read()
     cthulhu.close()
 except FileNotFoundError:
