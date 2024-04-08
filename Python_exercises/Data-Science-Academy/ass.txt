@@ -1,0 +1,17 @@
+xxhash
+tqdm
+pyyaml
+pyarrow-hotfix
+pyarrow
+multidict
+fsspec
+frozenlist
+filelock
+dill
+attrs
+yarl
+multiprocess
+huggingface-hub
+aiosignal
+aiohttp
+datasets

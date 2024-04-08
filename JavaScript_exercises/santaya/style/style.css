@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body{
+    background-color: rgb(248, 154, 218);
+    padding: 2rem;
+}
+
+*{
+    font-family: "VT323";
+}
+
+p{
+    color: aliceblue;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.center{
+    /* margin: 0 25% 0 25%;
+    width: 50%; */
+    margin: auto;
+    display: block;
+}
+
+#spinner{
+    padding: 1.5rem;
+    border: 0;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: aliceblue;
+    color: rgb(255, 0, 123);
+    font-size: 2rem;
+}
+
+#imageContainer{
+    text-align: center;
+}
+
+#image{
+    max-width: 200px;
+}
+
+
+@media (max-width:600px) {
+    img{
+        max-width: 250px;
+    }
+}
