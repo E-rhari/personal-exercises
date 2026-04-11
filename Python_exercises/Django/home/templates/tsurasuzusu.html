@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIRASHIZUSHI</title>
+    <link rel="stylesheet" href="{% static 'home/style/tsurasuzusu.css' %}">
+</head>
+<body>
+    <h1>TSURASUZUSU</h1>
+    <h3>Ultimate Django html</h3>
+    <button>Do EVERYTHING</button>
+    <p>{{nome}} smells</p>
+    <img src="{% static 'home/img/chirashizushitsurasuzusu.jpg' %}" alt="">
+
+    <h3>The best Sushi is</h3>
+    <p>{{sushi}}</p>
+    <h3>And its "chirashi level" is</h3>
+    <p>{{chirashi}}</p>
+</body>
+</html>

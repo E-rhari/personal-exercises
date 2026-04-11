@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHIRASHIZUSHI</title>
+    <link rel="stylesheet" href="{% static 'home/style/chirashizushi.css' %}">
+</head>
+<body>
+    <h1>CHIRASHIZUSHI</h1>
+    <h3>Ultimate Django html</h3>
+    <button>Do nothing</button>
+    <p>{{nome}} rules</p>
+    <img src="{% static 'home/img/chirashizushitsurasuzusu.jpg' %}" alt="">
+
+    <form action="{% url 'tsurasuzusu' %}" method="POST">{% csrf_token %}
+        <label for="sushi">Your favorite sushi</label>
+        <input type="text" name="sushi" placeholder="Chirashi Sushi">
+        <label for="sushi">How Chirashi is your Sushi?</label>
+        <input type="number" name="chirashi" placeholder="10" min="0" max="10">
+        <input type="submit" value="Chirashi your Sushi">
+    </form>
+</body>
+</html>
