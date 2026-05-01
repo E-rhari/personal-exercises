@@ -1,19 +1,19 @@
 #include<cstdlib>
-#include <stdexcept>
+#include<stdexcept>
 #include<iostream>
 using namespace std;
 
-template <typename type>
+template <typename Type>
 class SequentialStack {
 
 private:
-    type* data;
+    Type* data;
     int top;
     int size;
 
 public:
     SequentialStack(int initialSize=1){
-        data = (type*)malloc(sizeof(type)*initialSize);
+        data = (Type*)malloc(sizeof(Type)*initialSize);
         top = -1;
         size = initialSize;
     }
@@ -22,9 +22,9 @@ public:
     }
     
 
-    void push(type value){
+    void push(Type value){
         if(top+1 >= size){
-            type* newData = (type*)malloc(sizeof(type)*size*2);
+            Type* newData = (Type*)malloc(sizeof(Type)*size*2);
             if(newData == nullptr)
                 throw runtime_error("Out of memory"); 
 
@@ -56,7 +56,7 @@ public:
     }
 
 
-    type getTopValue(){
+    Type getTopValue(){
         if(isEmpty())
             return 0x0;
         return data[top];

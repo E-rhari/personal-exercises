@@ -22,13 +22,15 @@ public:
         size = 0;
     }
     ~DynamicStack(){
-        while (top!=nullptr)
+        while (isEmpty())
             pop();
     }
 
     
     void push(Type value){
         Node* newNode = (Node*)malloc(sizeof(Node));
+        if(element == nullptr)
+            throw runtime_error("Out of Memory!");
         
         newNode->value = value;
         newNode->next = top;
@@ -66,7 +68,7 @@ public:
     }
 
     Type getTopValue(){
-        if(top != nullptr)
+        if(!isEmpty())
             return top->value;
         return 0;
     }
