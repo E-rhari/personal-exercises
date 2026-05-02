@@ -30,13 +30,17 @@ public:
             index = getSize();
         
         if(isEmpty()){
-            head = el;
             el->next = nullptr;
+            head = el;
+        }
+        else if(index == 0){
+            el->next = head;
+            head = el;
         }
         else{
             Node* prev = getNode(index-1);
             if(prev == nullptr)
-                return false;   
+                return false;
             el->next = prev->next;
             prev->next = el;
         }
@@ -49,6 +53,7 @@ public:
         Node** elAndPrev = search(x);
         Node* el   = elAndPrev[0];
         Node* prev = elAndPrev[1];
+        free(elAndPrev);
         
         if(el == nullptr)
             return false;
@@ -98,7 +103,7 @@ public:
         Node* current = head;
         Node* prev = nullptr;
 
-        while(current->value != x && current != nullptr){
+        while(current != nullptr && current->value != x){
             prev = current;
             current = current->next;
         }
@@ -140,9 +145,9 @@ int main(){
         list.print();
     }
 
-    int values2[] = {7, 4, 75, 89};
-    int indexes[] = {2, 4, 76, -1};
-    for(int i=0; i < 4; i++){
+    int values2[] = {7, 4, 75, 89, 45};
+    int indexes[] = {2, 4, 76, -1, 0};
+    for(int i=0; i < 5; i++){
         list.insert(values2[i], indexes[i]);
         list.print();
     }
