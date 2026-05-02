@@ -4,34 +4,21 @@
 using namespace std;
 
 template <typename Type>
-class SequentialQueue {
+class AciclicSequentialQueue {
 private:
     int head;
-    int tail;
+    // tail is always equal to 0
     int size;
     Type* data;
-    bool full;
-
-    int nextIndex(int index){
-        return (index+1)%size;
-    }
-
-    int previousIndex(int index){
-        if(index-1 < 0)
-            index += size;
-        return (index-1)%size;
-    }
 
 
 public:
-    SequentialQueue(int size){
+    AciclicSequentialQueue(int initialSize=1){
         head = 0;
-        tail = 0;
-        full = false;
-        this->size = size;
-        data = (Type*)malloc(sizeof(Type)*size);
+        this->size = initialSize;
+        data = (Type*)malloc(sizeof(Type)*initialSize);
     }
-    ~SequentialQueue(){
+    ~AciclicSequentialQueue(){
         while(!isEmpty())
             dequeue();
         free(data);
@@ -40,24 +27,21 @@ public:
 
     void enqueue(Type x){
         if(isFull())
-            return;
+            resize(size*2);
 
         data[head] = x;
-        head = nextIndex(head);
-
-        if(head == tail)
-            full = true;
+        head++;
     }
 
     Type dequeue(){
         if(isEmpty())
             return 0x0;
 
-        Type value = data[tail];
-        tail = nextIndex(tail);
+        Type value = data[0];
+        for(int i=0; i<getAmountOfElements()-1; i++)
+            data[i] = data[i+1];
+        head--;
 
-        if(tail != head)
-            full = false;
         return value;
     }
 
@@ -66,34 +50,27 @@ public:
         printf("Queue %X: [", data);
 
         if(!isEmpty()){
-            int current = previousIndex(head);
-            while(current != tail){
+            int current = head-1;
+            while(current != 0){
                 cout << data[current];
                 cout << ", ";
-                current = previousIndex(current);
+                current -= 1;
             }
-            cout << data[current];
+            cout << data[0];
         }
 
         printf("] (amount: %d)\n", getAmountOfElements());
     }
 
     bool isEmpty(){
-        return tail == head && !full;
+        return head == 0;
     }
     bool isFull(){
-        return tail == head && full;
+        return head == size;
     }
 
     int getAmountOfElements(){
-        if(full)
-            return size;
-
-        int amount = head - tail;
-        if(amount < 0)
-            amount = size + amount;
-
-        return amount;
+        return head;
     }
     int getSize(){
         return size;
@@ -108,18 +85,12 @@ public:
             return false;
 
         for(int i=0; i<getAmountOfElements(); i++)
-            newData[i] = data[(tail+i)%size];
-            
+            newData[i] = data[i];
 
         free(data);
         data = newData;
-        head = getAmountOfElements()%newSize;
-        tail = 0;
         size = newSize;
-        
-        if(tail == head)
-            full = true;    
-        
+
         return true;
     }
 
@@ -127,18 +98,18 @@ public:
     Type getHeadValue(){
         if(isEmpty())
             return 0x0;
-        return data[previousIndex(head)];
+        return data[head-1];
     }
     Type getTailValue(){
         if(isEmpty())
             return 0x0;
-        return data[tail];
+        return data[0];
     }
 };
 
 
 int main(){
-    SequentialQueue<int> queue(20);
+    AciclicSequentialQueue<int> queue = AciclicSequentialQueue<int>();
 
     for(int i=1; i<=20; i++){
         queue.enqueue(i + 2 * i*i);
