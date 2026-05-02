@@ -4,7 +4,7 @@
 using namespace std;
 
 template <typename Type>
-class AciclicSequentialQueue {
+class AcyclicSequentialQueue {
 private:
     int head;
     // tail is always equal to 0
@@ -13,12 +13,12 @@ private:
 
 
 public:
-    AciclicSequentialQueue(int initialSize=1){
+    AcyclicSequentialQueue(int initialSize=1){
         head = 0;
         this->size = initialSize;
         data = (Type*)malloc(sizeof(Type)*initialSize);
     }
-    ~AciclicSequentialQueue(){
+    ~AcyclicSequentialQueue(){
         while(!isEmpty())
             dequeue();
         free(data);
@@ -109,7 +109,7 @@ public:
 
 
 int main(){
-    AciclicSequentialQueue<int> queue = AciclicSequentialQueue<int>();
+    AcyclicSequentialQueue<int> queue = AcyclicSequentialQueue<int>();
 
     for(int i=1; i<=20; i++){
         queue.enqueue(i + 2 * i*i);
