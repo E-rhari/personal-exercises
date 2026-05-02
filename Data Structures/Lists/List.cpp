@@ -49,6 +49,26 @@ public:
         return true;
     }
 
+    bool insertAfter(Type x, Type after){
+        Node* el = (Node*)malloc(sizeof(Node));
+        if(el == nullptr)
+            return false;
+        el->value = x;
+
+        Node** prevArray = search(after);
+        Node* prev = prevArray[0];
+        free(prevArray);
+        
+        if(prev == nullptr) // element not in list
+            return false;
+        else{
+            el->next = prev->next;
+            prev->next = el;
+        }
+        size++;
+        return true;
+    }
+
     bool remove(Type x){
         Node** elAndPrev = search(x);
         Node* el   = elAndPrev[0];
@@ -151,6 +171,9 @@ int main(){
         list.insert(values2[i], indexes[i]);
         list.print();
     }
+
+    list.insertAfter(68, 4);
+    list.print();
 
     list.remove(9);
     list.print();

@@ -39,7 +39,7 @@ public:
                 prev->next = el;
                 el->next = nullptr;
             }
-            else if(prev == nullptr){ // start of list
+            else if(prev == nullptr){ // beginning of list
                 el->next = head;
                 head = el;
             }
