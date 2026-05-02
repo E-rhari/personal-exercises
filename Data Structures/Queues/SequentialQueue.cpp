@@ -101,7 +101,7 @@ public:
 
     bool resize(int newSize){
         while(getAmountOfElements()>newSize)
-            dequeue();
+            printf("%d\n",dequeue());
 
         Type* newData = (Type*)malloc(sizeof(Type)*newSize);
         if(newData == nullptr)
@@ -109,13 +109,18 @@ public:
 
         for(int i=0; i<getAmountOfElements(); i++)
             newData[i] = data[(tail+i)%size];
+            
 
-        data = newData;
         free(data);
-        size = newSize;
-        head = getAmountOfElements();
+        data = newData;
+        head = getAmountOfElements()%newSize;
         tail = 0;
+        size = newSize;
 
+        
+        if(tail == head)
+            full = true;    
+        
         return true;
     }
 
