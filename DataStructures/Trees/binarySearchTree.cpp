@@ -147,11 +147,11 @@ public:
             return true;
         }             
 
-        // because node has more than a single child, we need a switcheroo
-        // as deleting a node with 2 subtrees is rather troublesome, we are not doing it.
-        // we will find a node with no more than one subtree and a convinient value be deleted in its place
-        // we will overwrite the value of x with the value from the node we are actually deleting
-        // this way, it'll be as a if we had deleted the node that had x as it's value
+        // Because node has more than a single child, we need a switcheroo.
+        // As deleting a node with 2 subtrees is rather troublesome, we are not doing it.
+        // We will find a node with no more than one subtree and a convinient value be deleted in its place.
+        // We will overwrite the value of x with the value from the node we are actually deleting.
+        // This way, it'll be as a if we had deleted the node that had x as it's value
         Node* currentParent = node;
         Node* currentNode   = child;
 
@@ -185,7 +185,7 @@ public:
     } Order;
 
 
-    void print(Order order){
+    void print(Order order=Order::PREORDER){
         cout << "Tree: [";
         if(!isEmpty()){
             switch(order){
@@ -202,28 +202,28 @@ public:
 };
 
 
-int main(){
-    BinarySearchTree<int> tree;
+// int main(){
+//     BinarySearchTree<int> tree;
 
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.insert(3);
-    tree.insert(2);
-    tree.insert(5);
-    tree.insert(4);
-    tree.insert(6);
-    tree.insert(3);
-    tree.insert(1);
-    tree.insert(0);
-    tree.insert(0);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.remove(0);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.remove(0);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.remove(6);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.remove(4);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-    tree.remove(5);
-    tree.print(BinarySearchTree<int>::Order::POSTORDER);
-}
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.insert(3);
+//     tree.insert(2);
+//     tree.insert(5);
+//     tree.insert(4);
+//     tree.insert(6);
+//     tree.insert(3);
+//     tree.insert(1);
+//     tree.insert(0);
+//     tree.insert(0);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.remove(0);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.remove(0);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.remove(6);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.remove(4);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.remove(5);
+//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+// }

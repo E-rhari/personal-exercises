@@ -155,39 +155,39 @@ public:
 };
 
 
-int main(){
-    List<int> list = List<int>();
-    list.print();
+// int main(){
+//     List<int> list = List<int>();
+//     list.print();
 
-    int values[] = {1,2,3,6,9};
-    for(int value : values){
-        list.insert(value);
-        list.print();
-    }
+//     int values[] = {1,2,3,6,9};
+//     for(int value : values){
+//         list.insert(value);
+//         list.print();
+//     }
 
-    int values2[] = {7, 4, 75, 89, 45};
-    int indexes[] = {2, 4, 76, -1, 0};
-    for(int i=0; i < 5; i++){
-        list.insert(values2[i], indexes[i]);
-        list.print();
-    }
+//     int values2[] = {7, 4, 75, 89, 45};
+//     int indexes[] = {2, 4, 76, -1, 0};
+//     for(int i=0; i < 5; i++){
+//         list.insert(values2[i], indexes[i]);
+//         list.print();
+//     }
 
-    list.insertAfter(68, 4);
-    list.print();
+//     list.insertAfter(68, 4);
+//     list.print();
 
-    list.remove(9);
-    list.print();
+//     list.remove(9);
+//     list.print();
 
-    list.removeIn(4);
-    list.print();
-    list.remove(6);
-    list.print();
-    list.removeIn(200);
-    list.print();
-    list.removeIn(-200);
-    list.print();
-    for(int i=0; i<7; i++){
-        list.removeIn(0);
-        list.print();
-    }
-}
+//     list.removeIn(4);
+//     list.print();
+//     list.remove(6);
+//     list.print();
+//     list.removeIn(200);
+//     list.print();
+//     list.removeIn(-200);
+//     list.print();
+//     for(int i=0; i<7; i++){
+//         list.removeIn(0);
+//         list.print();
+//     }
+// }
