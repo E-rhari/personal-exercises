@@ -9,7 +9,6 @@ using namespace std;
 
 
 
-// template <typename Type>
 namespace OptimalBinarySearchTree {
 
     class Cell {
@@ -95,12 +94,11 @@ namespace OptimalBinarySearchTree {
                     continue;
                 }
 
-                if(a==1)   // directly above the diagonal
-                    cell->index = j;
-
-                // the rest of them
                 cell->probSum = S(i,j);
                 cell->cost = C(i,j); // this also determines the index
+
+                if(a==1)   // directly above the diagonal
+                    cell->index = j;
             }
 
         BinarySearchTree<Type> tree = BinarySearchTree<Type>();
