@@ -5,7 +5,7 @@ using namespace std;
 
 template <typename Type>
 class BinarySearchTree {
-private:
+protected:
 
     class Node {
     public:
@@ -215,7 +215,7 @@ public:
 //     tree.insert(1);
 //     tree.insert(0);
 //     tree.insert(0);
-//     tree.print(BinarySearchTree<int>::Order::POSTORDER);
+//     tree.print(BinarySearchTree<int>::Order::PREORDER);
 //     tree.remove(0);
 //     tree.print(BinarySearchTree<int>::Order::POSTORDER);
 //     tree.remove(0);
