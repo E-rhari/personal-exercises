@@ -20,7 +20,7 @@ protected:
         Color color;
         int backHeight;
 
-        RedBlackNode(Type x=0x0, Color color=Color::BLACK){
+        RedBlackNode(Type x=0x0, Color color=Color::RED){
             this->left = nullptr;
             this->right = nullptr;
             this->parent = nullptr;
@@ -96,18 +96,16 @@ protected:
     void recolor(RedBlackNode* node){ // please make it recursive
         RedBlackNode* current = node;
 
+        RedBlackNode* parent = current->parent;
         if(current->parent == nullptr){
             current->color = RedBlackNode::Color::BLACK;
             return;
         }
+        RedBlackNode* grandparent = parent->parent;
+        if(grandparent == nullptr)
+            return;
 
-        while(current->parent->color == RedBlackNode::Color::RED){
-            printf("Tuturu~%d\n", node->value);
-            RedBlackNode* parent = current->parent;
-            RedBlackNode* grandparent = parent->parent;
-
-            if(grandparent == nullptr)
-                return;
+        if(parent->color == RedBlackNode::Color::RED){
 
             bool isLeftChild = false;
             RedBlackNode* pibling = nullptr; // pibling, I've searched, is the gender neutral for uncle and aunt
@@ -117,17 +115,17 @@ protected:
                 pibling = grandparent->getRightChild(); 
                 compareChild = parent->getRightChild();
             }
-            else {// (parent == grandparent->left)
+            else {// (parent == grandparent->getRightChild())
                 isLeftChild = false;
                 pibling = grandparent->getLeftChild(); 
                 compareChild = parent->getLeftChild();
             }
                 
-            if(pibling->color == RedBlackNode::Color::RED){
+            if(pibling!=nullptr && pibling->color == RedBlackNode::Color::RED){
                 parent->color = RedBlackNode::Color::BLACK;
                 pibling->color = RedBlackNode::Color::BLACK;
                 grandparent->color = RedBlackNode::Color::RED;
-                current = grandparent;
+                recolor(grandparent);
             }
             else { // pibling->color == RedBlackNode::Color::BLACK
                 if(current == compareChild){
@@ -145,6 +143,7 @@ protected:
                     rightRotate(grandparent);
                 else
                     leftRotate(grandparent);
+                recolor(current);
             }
         }
     }
@@ -163,9 +162,13 @@ public:
         printf("Inserting %d!\n", x);
 
         RedBlackNode** temp = (RedBlackNode**)this->search(x);
+        RedBlackNode* child  = temp[0];
         RedBlackNode* parent = temp[1];
         free(temp);
         
+        if(child != nullptr)
+            return false;
+
         node->parent = parent;
         node->value = x;
         
@@ -177,6 +180,7 @@ public:
             parent->right = node;
 
         recolor(node);
+        this->size++;
         return true;
     }
 
@@ -192,8 +196,10 @@ int main(){
     printf("Create tree!\n");
     RedBlackTree<int> tree;
     printf("Insert!\n");
-    for(int i=0; i<10; i++)
-        tree.insert(i*4 - i*i);
-    tree.print();
+    for(int i=0; i<10; i++){
+        // tree.insert(i*4 - i*i);
+        tree.insert(i*8 + 4*i*i - i*i*i);
+        tree.print();
+    }
     return 0;
 }
