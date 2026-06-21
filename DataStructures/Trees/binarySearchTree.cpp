@@ -1,5 +1,6 @@
 #include<cstdlib>
 #include<iostream>
+#include <string> 
 using namespace std;
 
 
@@ -18,6 +19,10 @@ protected:
             right = nullptr;
             value = x;
         }
+
+        virtual string toString(){
+            return to_string(value);
+        }
     };
 
 
@@ -28,7 +33,7 @@ protected:
         if(node == nullptr)
             return;
 
-        cout << node->value << ", ";
+        cout << node->toString() << ", ";
         printPreOrder(node->left);
         printPreOrder(node->right);
     }
@@ -38,7 +43,7 @@ protected:
             return;
             
         printSymmetricOrder(node->left);
-        cout << node->value << ", ";
+        cout << node->toString() << ", ";
         printSymmetricOrder(node->right);
     }
 
@@ -48,7 +53,7 @@ protected:
 
         printPostOrder(node->left);
         printPostOrder(node->right);
-        cout << node->value << ", ";
+        cout << node->toString() << ", ";
     }
 
     
