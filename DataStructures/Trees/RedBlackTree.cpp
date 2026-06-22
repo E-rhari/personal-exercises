@@ -18,12 +18,11 @@ protected:
 
         RedBlackNode* parent;
         Color color;
-        int backHeight;
 
-        RedBlackNode(Type x=0x0, Color color=Color::RED){
+        RedBlackNode(Type x=0x0, Color color=Color::RED, RedBlackNode* parent=nullptr){
             this->left = nullptr;
             this->right = nullptr;
-            this->parent = nullptr;
+            this->parent = parent;
             this->color = color;
             this->value = x;
         }
@@ -192,8 +191,10 @@ protected:
     void removeFixUp(RedBlackNode* node){
         RedBlackNode* current = node;
 
-        if(current == this->root || current->color != RedBlackNode::Color::BLACK)
+        if(current == this->root || current->color != RedBlackNode::Color::BLACK){        
+            node->color = RedBlackNode::Color::BLACK;
             return;
+        }
 
         bool isLeftChild = false;
         RedBlackNode* sibling = nullptr;
@@ -292,9 +293,9 @@ public:
         RedBlackNode* child;
         if(node->getLeftChild() == nullptr){
             child = node->getRightChild();
-            transplant(node, child);
+            transplant(node, node->getRightChild());
         }
-        else if(node->right == nullptr){
+        else if(node->getRightChild() == nullptr){
             child = node->getLeftChild();
             transplant(node, child);
         }
@@ -306,7 +307,7 @@ public:
             if(child != nullptr && current->parent == node)
                 child->parent = current;
             else{
-                transplant(current, current->getRightChild());
+                transplant(current, child);
                 current->right = node->getRightChild();
                 if(current->getRightChild() != nullptr)
                     current->getRightChild()->parent = current;
@@ -317,7 +318,12 @@ public:
             current->color = node->color;
         }
         
-        if(child != nullptr && originalColor == RedBlackNode::BLACK)
+        if(child == nullptr){
+            child = new RedBlackNode(0, RedBlackNode::Color::BLACK, current); // memory leak?
+            removeFixUp(child);
+            free(child);
+        }
+        else if(originalColor == RedBlackNode::BLACK)
             removeFixUp(child);
 
         this->size--;
@@ -333,8 +339,7 @@ int main(){
     char command = ' ';
     int value = 0;
 
-    while(command != EOF){
-        scanf("%c", &command);
+    while(scanf("%c", &command) != EOF){
         switch(command){
             case 'i':   scanf("%d", &value);
                         tree.insert(value);
