@@ -5,16 +5,21 @@ using namespace std;
 
 template <typename Type>
 class List {
-private:
+public:
     class Node{
     public:
         Type value;
         Node* next;
     };
+
+
+private:
     Node* head;
     int size;
 
+
 public:
+
     List(){
         size = 0;
         head = nullptr;
@@ -78,7 +83,10 @@ public:
         if(el == nullptr)
             return false;
 
-        prev->next = el->next;
+        if(prev != nullptr)
+            prev->next = el->next;
+        else
+            head = el->next;
         free(el);
 
         size--;
@@ -123,7 +131,8 @@ public:
         Node* current = head;
         Node* prev = nullptr;
 
-        while(current != nullptr && current->value != x){
+        while(current != nullptr 
+           && current->value != x){
             prev = current;
             current = current->next;
         }
