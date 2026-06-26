@@ -198,17 +198,17 @@ protected:
 
         bool isLeftChild = false;
         RedBlackNode* sibling = nullptr;
-        RedBlackNode* cousin = nullptr;
+        RedBlackNode* farNibling = nullptr;    // nibling is the gender neutral for nephew and niece
 
         if(current == current->parent->getLeftChild()){
             isLeftChild = true;
             RedBlackNode* sibling = current->parent->getRightChild();
-            RedBlackNode* cousin = sibling->getRightChild();
+            RedBlackNode* farNibling = sibling->getRightChild();
         }
         else{
             isLeftChild = false;
             RedBlackNode* sibling = current->parent->getLeftChild();
-            RedBlackNode* cousin = sibling->getLeftChild();
+            RedBlackNode* farNibling = sibling->getLeftChild();
         }
 
         if(sibling->color == RedBlackNode::Color::RED){
@@ -216,7 +216,7 @@ protected:
             current->parent->color = RedBlackNode::Color::RED;
             rotate(current->parent, isLeftChild);
             sibling = current->parent->getRightChild();
-            cousin = sibling->getRightChild();
+            farNibling = sibling->getRightChild();
         }
 
         if(sibling->getLeftChild()->color  == RedBlackNode::Color::BLACK
@@ -225,7 +225,7 @@ protected:
             removeFixUp(current->parent);
         }
         else { 
-            if(cousin->color == RedBlackNode::Color::BLACK){
+            if(farNibling->color == RedBlackNode::Color::BLACK){
                 sibling->color = RedBlackNode::Color::RED;
                 if(isLeftChild){
                     sibling->getLeftChild()->color = RedBlackNode::Color::BLACK;
@@ -238,7 +238,7 @@ protected:
             }
             sibling->color = current->parent->color;
             current->parent->color = RedBlackNode::Color::BLACK;
-            cousin->color = RedBlackNode::Color::BLACK;
+            farNibling->color = RedBlackNode::Color::BLACK;
             rotate(current, isLeftChild);
         }
     }
@@ -293,7 +293,7 @@ public:
         RedBlackNode* child;
         if(node->getLeftChild() == nullptr){
             child = node->getRightChild();
-            transplant(node, node->getRightChild());
+            transplant(node, child);
         }
         else if(node->getRightChild() == nullptr){
             child = node->getLeftChild();
