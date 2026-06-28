@@ -28,7 +28,7 @@ public:
 
 
     void enqueue(Type value){
-        Node* element = (Node*)malloc(sizeof(Node));
+        Node* element = new Node();
         if(element == nullptr)
             throw runtime_error("Out of Memory!");
 

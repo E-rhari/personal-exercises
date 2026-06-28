@@ -28,7 +28,7 @@ public:
 
     
     void push(Type value){
-        Node* newNode = (Node*)malloc(sizeof(Node));
+        Node* newNode = new Node();
         if(element == nullptr)
             throw runtime_error("Out of Memory!");
         

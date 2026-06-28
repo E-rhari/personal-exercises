@@ -75,7 +75,7 @@ namespace OptimalBinarySearchTree {
 
         matrix = (Cell**)malloc(sizeof(Cell*)*n);
         for(int i=0; i < n; i++)
-            matrix[i] = (Cell*)malloc(sizeof(Cell)*n);
+            matrix[i] = new Cell[n];
         
         indexOrder = List<int>();
         
@@ -125,9 +125,9 @@ int main(){
     scanf("%d", &n);
     n++;
 
-    int* c  = (int*)malloc(sizeof(int)*n);
-    int* f  = (int*)malloc(sizeof(int)*n);
-    int* f0 = (int*)malloc(sizeof(int)*n);
+    int c[n];
+    int f[n];
+    int f0[n];
 
     scanf("%d", f0);
     

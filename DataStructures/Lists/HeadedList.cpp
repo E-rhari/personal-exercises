@@ -5,7 +5,7 @@ using namespace std;
 
 template <typename Type>
 class List {
-private:
+public:
     class Node{
     public:
         Type value;
@@ -14,16 +14,16 @@ private:
     Node* head;
     int size;
 
-public:
+
     List(){
         size = 0;
-        head = (Node*)malloc(sizeof(Node));
+        head = new Node();
         head->value = __INT_MAX__;
         head->next = nullptr;
     }
 
     bool insert(Type x, int index=-1){
-        Node* el = (Node*)malloc(sizeof(Node));
+        Node* el = new Node();
         if(el == nullptr)
             return false;
         el->value = x;
@@ -41,7 +41,7 @@ public:
     }
 
     bool insertBefore(Type x, Type after){
-        Node* el = (Node*)malloc(sizeof(Node));
+        Node* el = new Node();
         if(el == nullptr)
             return false;
         el->value = x;
@@ -141,43 +141,43 @@ public:
 };
 
 
-int main(){
-    List<int> list = List<int>();
-    list.print();
+// int main(){
+//     List<int> list = List<int>();
+//     list.print();
 
-    int values[] = {1,2,3,6,9};
-    for(int value : values){
-        list.insert(value);
-        list.print();
-    }
+//     int values[] = {1,2,3,6,9};
+//     for(int value : values){
+//         list.insert(value);
+//         list.print();
+//     }
 
-    int values2[] = {7, 4, 75, 89, 45};
-    int indexes[] = {2, 4, 76, -1, 0};
-    for(int i=0; i < 5; i++){
-        list.insert(values2[i], indexes[i]);
-        list.print();
-    }
+//     int values2[] = {7, 4, 75, 89, 45};
+//     int indexes[] = {2, 4, 76, -1, 0};
+//     for(int i=0; i < 5; i++){
+//         list.insert(values2[i], indexes[i]);
+//         list.print();
+//     }
 
-    list.insertBefore(68, 4);
-    list.print();
-    list.insertBefore(23, 45);
-    list.print();
-    list.insertBefore(3, 67);
-    list.print();
+//     list.insertBefore(68, 4);
+//     list.print();
+//     list.insertBefore(23, 45);
+//     list.print();
+//     list.insertBefore(3, 67);
+//     list.print();
 
-    list.remove(9);
-    list.print();
+//     list.remove(9);
+//     list.print();
 
-    list.removeIn(4);
-    list.print();
-    list.remove(6);
-    list.print();
-    list.removeIn(200);
-    list.print();
-    list.removeIn(-200);
-    list.print();
-    for(int i=0; i<7; i++){
-        list.removeIn(0);
-        list.print();
-    }
-}
+//     list.removeIn(4);
+//     list.print();
+//     list.remove(6);
+//     list.print();
+//     list.removeIn(200);
+//     list.print();
+//     list.removeIn(-200);
+//     list.print();
+//     for(int i=0; i<7; i++){
+//         list.removeIn(0);
+//         list.print();
+//     }
+// }

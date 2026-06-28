@@ -16,7 +16,7 @@ public:
     AcyclicSequentialQueue(int initialSize=1){
         head = 0;
         this->size = initialSize;
-        data = (Type*)malloc(sizeof(Type)*initialSize);
+        data = new Type[initialSize];
     }
     ~AcyclicSequentialQueue(){
         while(!isEmpty())
@@ -80,7 +80,7 @@ public:
         while(getAmountOfElements()>newSize)
             dequeue();
 
-        Type* newData = (Type*)malloc(sizeof(Type)*newSize);
+        Type* newData = new Type[newSize];
         if(newData == nullptr)
             return false;
 

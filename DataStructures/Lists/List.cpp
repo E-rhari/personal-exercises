@@ -3,6 +3,8 @@
 #include<iostream>
 using namespace std;
 
+#pragma once
+
 template <typename Type>
 class List {
 public:
@@ -24,16 +26,21 @@ public:
         size = 0;
         head = nullptr;
     }
+    ~List(){
+        while(!isEmpty())
+            removeIn(0);
+    }
+
 
     bool insert(Type x, int index=-1){
-        Node* el = (Node*)malloc(sizeof(Node));
+        Node* el = new Node();
         if(el == nullptr)
             return false;
         el->value = x;
         
         if(index==-1)
             index = getSize();
-        
+
         if(isEmpty()){
             el->next = nullptr;
             head = el;
@@ -55,7 +62,7 @@ public:
     }
 
     bool insertAfter(Type x, Type after){
-        Node* el = (Node*)malloc(sizeof(Node));
+        Node* el = new Node();
         if(el == nullptr)
             return false;
         el->value = x;
@@ -131,8 +138,7 @@ public:
         Node* current = head;
         Node* prev = nullptr;
 
-        while(current != nullptr 
-           && current->value != x){
+        while(current != nullptr && current->value != x){
             prev = current;
             current = current->next;
         }

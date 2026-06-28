@@ -13,7 +13,7 @@ private:
 
 public:
     SequentialStack(int initialSize=1){
-        data = (Type*)malloc(sizeof(Type)*initialSize);
+        data = new Type[initialSize];
         top = -1;
         size = initialSize;
     }
@@ -24,7 +24,7 @@ public:
 
     void push(Type value){
         if(top+1 >= size){
-            Type* newData = (Type*)malloc(sizeof(Type)*size*2);
+            Type* newData = new Type[2];
             if(newData == nullptr)
                 throw runtime_error("Out of memory"); 
 

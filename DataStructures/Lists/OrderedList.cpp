@@ -21,7 +21,7 @@ public:
     }
 
     bool insert(Type x){
-        Node* el = (Node*)malloc(sizeof(Node));
+        Node* el = new Node();
         if(el == nullptr)
             return false;
         el->value = x;

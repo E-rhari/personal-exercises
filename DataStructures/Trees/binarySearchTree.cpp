@@ -93,7 +93,7 @@ public:
     // }
 
     bool insert(Type x){
-        Node* element = (Node*)malloc(sizeof(Node));
+        Node* element = new Node();
         if(element == nullptr) // out of memory
             return false;
         *element = Node(x);

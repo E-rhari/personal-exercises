@@ -29,7 +29,7 @@ public:
         tail = 0;
         full = false;
         this->size = size;
-        data = (Type*)malloc(sizeof(Type)*size);
+        data = new Type[size];
     }
     ~SequentialQueue(){
         while(!isEmpty())
@@ -103,7 +103,7 @@ public:
         while(getAmountOfElements()>newSize)
             dequeue();
 
-        Type* newData = (Type*)malloc(sizeof(Type)*newSize);
+        Type* newData = new Type[newSize];
         if(newData == nullptr)
             return false;
 
